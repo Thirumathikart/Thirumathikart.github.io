@@ -13,7 +13,7 @@
       "namespace": "android_app",
       "package_name": "dev.tkart.seller",
       "sha256_cert_fingerprints":
-      ["D1:D7:DC:B5:CE:41:5E:CE:EA:89:4D:F7:65:2E:57:B0:EE:E3:9C:B6:5A:75:B9:F4:1E:A3:BB:50:88:22:81:2C"]
+      ["2A:BA:FA:07:7D:55:72:E9:05:F8:57:A4:42:B2:8B:B7:E0:E6:8A:8B:83:73:31:01:F5:A9:4E:9E:87:C0:4F:15"]
     }
 },
 {
@@ -22,6 +22,6 @@
       "namespace": "android_app",
       "package_name": "dev.tkart.carrier",
       "sha256_cert_fingerprints":
-      ["D1:D7:DC:B5:CE:41:5E:CE:EA:89:4D:F7:65:2E:57:B0:EE:E3:9C:B6:5A:75:B9:F4:1E:A3:BB:50:88:22:81:2C"]
+      ["89:D8:2B:AB:5F:56:20:77:42:62:89:F8:63:31:26:1B:7D:61:B5:F3:1C:08:94:8B:1F:07:41:95:0E:51:A8:36"]
     }
 }]
