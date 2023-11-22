@@ -1,0 +1,48 @@
+<div *ngIf="headers">
+    <p-tabView *ngIf="headers" [scrollable]="true" >
+        <p-tabPanel *ngFor="let key of headers">
+            <ng-template pTemplate="header">
+                <i [class]="icons.get(key)" style="font-size: 1rem; margin-right: 7.5px;"></i>
+                <span>{{key}}</span>
+            </ng-template>
+            <div *ngFor="let order of panels.get(key)">
+                <div class="order-card" *ngFor="let item of order.items">
+                    <div class="content">
+                        <img class="img" [src]="'https:/thirumathikart.nitt.edu/api/product/images' + item.image" />
+                        <div class="title-content">
+                            <div class="name">
+                                {{ item.name }}
+                                <span class="quantity">({{ item.quantity }})</span>
+                            </div>
+                            <div class="id">
+                                #{{item._id }}
+                            </div>
+                        </div>
+                        <span *ngIf="key=='New'"  class="arrow">
+                            <button (click)="updateStatus('REJECTED',order._id)" type="button" pButton icon="pi pi-times"
+                                style="background: transparent; color: red; border-color: red;"></button>
+                            <button (click)="updateStatus('ACCEPTED',order._id)" type="button" pButton icon="pi pi-check"
+                                style="background: transparent; color: green; border-color: green;"></button>
+                        </span>
+
+    
+                        <span *ngIf="key=='Accepted'" class="arrow">
+                        <button  (click)="updateStatus('PREPARED',order._id)" type="button" pButton
+                        style=" background: transparent; color:palevioletred; border-color: palevioletred;" icon="pi pi-shopping-bag"></button>   
+                      </span>
+
+                      <span *ngIf="key=='Packed'" class="arrow">
+                        <button  (click)="updateStatus('Shipped',order._id)" type="button" pButton
+                        style="background: transparent; color: black; border-color: black;"  icon="pi pi-qrcode"></button>   
+                      </span>
+
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="panels.get(key)?.length===0" class="notfound">
+                <i class="pi pi-folder-open" style="font-size: 10rem;"></i>
+                <p>No Records Found</p>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+</div>

@@ -1,0 +1,57 @@
+<p-card class="card">
+    <h1>{{id? "Update": "Add"}} Product</h1>
+    <br>
+    <form *ngIf="productForm" [formGroup]="productForm">
+        <div class="field">
+            <label htmlFor="file">Upload File</label>
+            <p-fileUpload #fileUpload [files]="fileUpload.files" class="upload" mode="advanced"
+                [style]="{width: '100%'}" [multiple]="false" (onSelect)="fileUploader($event)"
+                chooseLabel="Select"
+                [disabled]="fileUpload.files.length>0"
+                [showCancelButton]="false"
+                [showUploadButton]="false" accept="image/*">
+                <ng-template let-file let-i="index" pTemplate="file">
+                    <div class="file-content">
+                        <img style="flex: '1';" [src]="getSafeUrl(file)" height="50px" width="50px">
+                        <div style="flex: '1'; font-size: 12px;">{{file.name}}</div>
+                        <div style="flex: '2';">
+                            <p-button (click)="removeFile($event,i)" icon="pi pi-times"></p-button>
+                        </div>
+                    </div>
+                    <br>
+                </ng-template>
+            </p-fileUpload>
+        </div>
+        <br>
+        <div class="field">
+            <label htmlFor="name">Name</label>
+            <input type="text" pInputText formControlName="name" />
+        </div>
+        <br>
+        <div class="field">
+            <label htmlFor="category">Category</label>
+            <p-dropdown *ngIf="categories && categories.length>0" [style]="{width: '100%'}" [options]="categories"
+                formControlName="category" placeholder="Select a Category"></p-dropdown>
+        </div>
+        <br>
+        <div class="field">
+            <label htmlFor="price">Price</label>
+            <p-inputNumber [style]="{width: '100%'}" formControlName="price" [showButtons]="true" mode="currency"
+                currency="INR"> </p-inputNumber>
+        </div>
+        <br>
+        <div class="field">
+            <label htmlFor="stock">Stock</label>
+            <p-inputNumber [style]="{width: '100%'}" formControlName="stock" [showButtons]="true" inputId="integeronly">
+            </p-inputNumber>
+        </div>
+        <br>
+        <div class="field">
+            <label htmlFor="description">Description</label>
+            <textarea rows="5" cols="30" pInputTextarea formControlName="description"></textarea>
+        </div>
+        <br>
+        <br>
+        <p-button (onClick)="onUpload()" class="field" [label]="id===undefined? 'Create' : 'Update'"></p-button>
+    </form>
+</p-card>

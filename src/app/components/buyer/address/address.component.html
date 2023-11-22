@@ -1,0 +1,48 @@
+<p-card class="card">
+    <h1>Address</h1>
+    <form *ngIf="addressForm" [formGroup]="addressForm">
+    <div class="field">
+        <label htmlFor="username">Line 1</label>
+        <input type="text" pInputText formControlName="line1" />
+    </div>
+    <br>
+    <div class="field">
+        <label htmlFor="username">Line 2</label>
+        <input type="text" pInputText formControlName="line2" />
+    </div>
+    <br>
+    <div class="field">
+        <label htmlFor="username">Landmark</label>
+        <input type="text" pInputText formControlName="landmark" />
+    </div>
+    <br>
+    <div class="field">
+        <label htmlFor="username">District</label>
+        <input type="text" pInputText formControlName="district" />
+    </div>
+    <br>
+    <div class="field">
+        <label htmlFor="username">State</label>
+        <input type="text" pInputText formControlName="state" />
+    </div>
+    <br>
+    <div class="field">
+        <label htmlFor="number">Pincode</label> 
+        <input type="text" pInputText formControlName="pin_code" />
+    </div>
+    <br>
+    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div class="field">
+            <label htmlFor="number">Longitude</label> 
+            <input style="max-width: 120px;" type="number" pInputText formControlName="longitude" />
+        </div>
+        <div class="field">
+            <label htmlFor="number">Latitude</label> 
+            <input style="max-width: 120px;" type="number" pInputText formControlName="latitude" />
+        </div>
+    </div>
+    </form>
+    <br>
+    <br>
+    <p-button (onClick)="action()" class="field" [label]="id===undefined? 'Create' : 'Update'"></p-button>
+</p-card>

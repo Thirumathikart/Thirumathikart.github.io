@@ -1,0 +1,79 @@
+<div *ngIf="user" class="card">
+    <h1>Profile</h1>
+    <label htmlFor="username">First Name</label>
+    <div style="margin-top: 1rem;" class="p-inputgroup">
+        <input [disabled]="user.first_name.selected==false" type="text" pInputText
+            [(ngModel)]="user.first_name.value" />
+        <button (click)="user.first_name.selected = true" *ngIf="!user.first_name.selected" type="button" pButton
+            icon="pi pi-pencil" style="background: transparent; color: orange; border-color: orange;"></button>
+        <button (click)="update(user.first_name.key,user.first_name.value)" *ngIf="user.first_name.selected"
+            type="button" pButton icon="pi pi-check"
+            style="background: transparent; color: green; border-color: black; border-right: 0;"></button>
+        <button (click)="user.first_name.selected = false" *ngIf="user.first_name.selected" type="button" pButton
+            icon="pi pi-times" style="background: transparent; color: red; border-color: black;"></button>
+    </div>
+    <br>
+    <label htmlFor="username">Last Name</label>
+    <div style="margin-top: 1rem;" class="p-inputgroup">
+        <input [disabled]="user.last_name.selected==false" type="text" pInputText [(ngModel)]="user.last_name.value" />
+        <button (click)="user.last_name.selected = true" *ngIf="!user.last_name.selected" type="button" pButton
+            icon="pi pi-pencil" style="background: transparent; color: orange; border-color: orange;"></button>
+        <button (click)="update(user.last_name.key,user.last_name.value)" *ngIf="user.last_name.selected" type="button"
+            pButton icon="pi pi-check"
+            style="background: transparent; color: green; border-color: black; border-right: 0;"></button>
+        <button (click)="user.last_name.selected = false" *ngIf="user.last_name.selected" type="button" pButton
+            icon="pi pi-times" style="background: transparent; color: red; border-color: black;"></button>
+    </div>
+    <div *ngIf="role==1" class="field">
+        <br>
+        <label htmlFor="username">Email</label>
+        <input disabled type="email" pInputText [(ngModel)]="user.email" />
+    </div>
+    <br>
+    <div class="field">
+        <label htmlFor="username">Contact Number</label>
+        <input disabled type="text" pInputText [(ngModel)]="user.contact_number" />
+    </div>
+    <div  *ngIf="role==3" class="field">
+        <br>
+        <label htmlFor="username">Vehicle Number</label>
+        <input disabled type="text" pInputText [(ngModel)]="user.vehicle_number" />
+    </div>
+    <br>
+    <div *ngIf="role!=3">
+    <h3>Address</h3>
+    <div *ngFor="let add of user.address" class="address-card">
+        <div style="
+        display: flex; flex-direction: row; 
+        justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 10px;">
+                <button (click)="updateAddress(add._id)" type="button" pButton icon="pi pi-pencil"
+                    style="background: transparent; color: orange; border-color: orange;"></button>
+                <!-- <button 
+                type="button" 
+                pButton icon="pi pi-trash"
+                style="background: transparent; color: red; border-color: red;"></button> -->
+            </div>
+        </div>
+        <p-divider></p-divider>
+        <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+            <iframe style="border-radius: 10px; padding: 10px;" width="50%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                [src]="sanitizer.bypassSecurityTrustResourceUrl(mapsurl(add))">
+            </iframe>
+            <p-divider styleClass="hidden md:flex" layout="vertical"></p-divider>
+                <div width="50%">
+                    <p>{{add.line1}}</p>
+                    <p>{{add.line2}}</p>
+                    <p>{{add.landmark}}</p>
+                    <p>{{add.district}}</p>
+                    <p>{{add.state}}</p>
+                    <p>{{add.pin_code}}</p>
+                </div>
+        </div>
+    
+    </div>
+    <br>
+    <p-button *ngIf="!(role===2 && user.address.length>0)" (onClick)="addAddress()" class="field"
+        label="Add Address"></p-button>
+    </div>
+</div>

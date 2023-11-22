@@ -1,0 +1,82 @@
+.header {
+    width: 100%;
+    height: 3.8rem;
+    padding: 2.5rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:host ::ng-deep {
+    input {
+        width: 100% !important;
+    }
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2px;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.name {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 0.8rem;
+}
+
+.category {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card {
+    margin: 1.5rem 1.2rem;
+    padding: 0.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.img {
+    width: 4.5rem;
+    height: 4.5rem;
+    box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    border-radius: 0.25rem;
+}
+
+.pos {
+    margin-bottom: 5rem;
+    margin-right: 1rem;
+    z-index: 3;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.layout {
+    padding-bottom: 1rem;
+}
+
+.stock {
+    font-weight: 500;
+    font-size: 1rem;
+}

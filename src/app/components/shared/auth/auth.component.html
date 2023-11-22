@@ -1,0 +1,91 @@
+<div class="layout">
+<p-card *ngIf="isLogin" class="card">
+    <h1>Login</h1>
+    <form [formGroup]="loginForm">
+        <div *ngIf="role==1" class="field">
+            <label htmlFor="username">Email</label>
+            <input type="text" pInputText formControlName="email" />
+        </div>
+        <div *ngIf="role==2" class="field">
+            <label htmlFor="username">Member Code</label>
+            <input type="text" pInputText formControlName="member_code" />
+        </div>
+        <div *ngIf="role==3" class="field">
+            <label htmlFor="username">Phone Number</label>
+            <input type="text" pInputText formControlName="contact_number" />
+        </div>
+        <br>
+        <div class="field">
+            <label htmlFor="password">Password</label> 
+            <input type="password" pInputText formControlName="password" />
+        </div>
+        <br>
+        <p-button (onClick)="login()"  class="field" label="Submit"></p-button>
+    </form>
+    <br>
+    <small id="username-help">Don't have an account? <p-button (onClick)="change()" [link]="true" [style]="{'padding': '0'}">Register</p-button></small>
+</p-card>
+<p-card *ngIf="!isLogin" class="card">
+    <h1>Register</h1>
+    <form [formGroup]="registerForm">
+    <div class="field">
+        <label htmlFor="username">First Name</label>
+        <input type="text" pInputText formControlName="first_name" />
+    </div>
+    <br>
+    <div class="field">
+        <label htmlFor="username">Last Name</label>
+        <input type="text" pInputText formControlName="last_name" />
+    </div>
+    <br>
+    <div class="field">
+        <label htmlFor="username">Contact Number</label>
+        <input type="text" pInputText formControlName="contact_number" />
+    </div>
+    <br>
+    <div *ngIf="role==1" class="field">
+        <label htmlFor="username">Email</label>
+        <input type="email" pInputText formControlName="email" />
+    </div>
+    <div *ngIf="role==2">
+        <div  class="field">
+            <label htmlFor="username">Member Code</label>
+            <input type="email" pInputText formControlName="member_code" />
+        </div>
+        <br>
+        <div  class="field">
+            <label htmlFor="username">IFSC Code</label>
+            <input type="email" pInputText formControlName="ifsc_code" />
+        </div>
+        <br>
+        <div  class="field">
+            <label htmlFor="username">Account Name</label>
+            <input type="email" pInputText formControlName="account_name" />
+        </div>
+        <br>
+        <div  class="field">
+            <label htmlFor="username">Account Number</label>
+            <input type="email" pInputText formControlName="account_number" />
+        </div>
+        <br>
+        <div class="field">
+            <label htmlFor="username">Branch</label>
+            <input type="email" pInputText formControlName="branch" />
+        </div>
+    </div>
+    <div *ngIf="role==3" class="field">
+        <label htmlFor="username">Vehicle Number</label>
+        <input type="email" pInputText formControlName="vehicle_number" />
+    </div>
+    <br>
+    <div class="field">
+        <label htmlFor="password">Password</label> 
+        <input type="password" pInputText formControlName="password" />
+    </div>
+    </form>
+    <br>
+    <p-button (onClick)="register()" class="field" label="Submit"></p-button>
+    <br>
+    <small id="username-help">Already have an account? <p-button (onClick)="change()" [link]="true" [style]="{'padding': '0'}">Login</p-button></small>
+</p-card>
+</div>

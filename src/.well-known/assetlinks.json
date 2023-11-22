@@ -1,0 +1,27 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dev.tkart.buyer",
+      "sha256_cert_fingerprints":
+      ["D1:D7:DC:B5:CE:41:5E:CE:EA:89:4D:F7:65:2E:57:B0:EE:E3:9C:B6:5A:75:B9:F4:1E:A3:BB:50:88:22:81:2C"]
+    }
+},
+{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dev.tkart.seller",
+      "sha256_cert_fingerprints":
+      ["D1:D7:DC:B5:CE:41:5E:CE:EA:89:4D:F7:65:2E:57:B0:EE:E3:9C:B6:5A:75:B9:F4:1E:A3:BB:50:88:22:81:2C"]
+    }
+},
+{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dev.tkart.carrier",
+      "sha256_cert_fingerprints":
+      ["D1:D7:DC:B5:CE:41:5E:CE:EA:89:4D:F7:65:2E:57:B0:EE:E3:9C:B6:5A:75:B9:F4:1E:A3:BB:50:88:22:81:2C"]
+    }
+}]

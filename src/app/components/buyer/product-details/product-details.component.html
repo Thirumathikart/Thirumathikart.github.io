@@ -1,0 +1,45 @@
+<div *ngIf="product">
+    <div class="header">
+        <p-button (click)="goBack()" severity="secondary" [rounded]="true" [text]="true">
+         <i class="pi pi-arrow-left"></i>
+        </p-button> 
+        <span class="gap">{{ product.name }}</span>   
+    </div>
+    <img 
+    class="img"
+    [src]="'https:/thirumathikart.nitt.edu/api/product/images' + product.image"
+    alt="Image"/>
+    <div class="layout">
+        <div class="title-frame">
+            <div class="title-content">
+                <div class="name">{{ product.name }}</div> 
+                <div class="price">₹ {{ product.price }}</div>
+            </div> 
+            <p-chip class="chip">
+                <div class="category">
+                    {{ product.categories }}
+                </div>
+            </p-chip>
+        </div>
+        <div class="counter">
+            <p-button (click)="decrement()">
+                <i  class="pi pi-minus"></i> 
+            </p-button>
+            <input type="number" pInputText [(ngModel)]="count"/>
+            <p-button (click)="increment()">
+                <i class="pi pi-plus"></i>
+            </p-button> 
+        </div>
+        <p-tabView [(activeIndex)]="activeIndex">
+            <p-tabPanel header="Description">
+                <p>
+                    {{product.description}}
+                </p>
+            </p-tabPanel>
+        </p-tabView>
+        <div class="cart">
+            <p-button (click)="goToPayment()" label="Buy Now" iconPos="right">
+            </p-button>
+        </div>
+    </div>
+</div>

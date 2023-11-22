@@ -1,0 +1,26 @@
+<div>
+    <div class="header">
+        <div class="logo-content">
+            <img class="logo" src="assets/logo.png" />
+            <h3>Thirumathikart</h3>
+        </div>
+    </div>
+    <div class="body">
+        <div *ngIf="selectedMenu==0">
+            <app-categories></app-categories>
+        </div>
+        <div class="body" *ngIf="selectedMenu==1">
+            <app-orders></app-orders>
+        </div>
+        <div *ngIf="selectedMenu==2">
+            <app-profile></app-profile>
+        </div>
+    </div>
+    <div class="footer">
+        <div *ngFor="let menu of menus" style="display: flex; flex-direction: column;"
+            [style.color]="selectedMenu == menu.index ? 'green': 'black'" (click)="selectedMenu=menu.index">
+            <i [class]="menu.icon" [style.font-size]="selectedMenu == menu.index ? '1.5rem' : '1rem'"></i>
+            <div>{{menu.label}}</div>
+        </div>
+    </div>
+</div>

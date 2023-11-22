@@ -1,0 +1,36 @@
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* This helps to center the card vertically on the viewport. Adjust as needed. */
+  }
+  
+  .card {
+    width: 100%;
+    padding: 1rem;
+  }
+
+h1 {
+    text-align: center;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.text {
+    margin: 0;
+    max-width: 100%;
+}
+
+.link {
+    background-color: #2f5277;
+
+    border: none;
+    padding: 0px;
+    margin: 0;
+    border-bottom: 0;
+    cursor: pointer;
+}

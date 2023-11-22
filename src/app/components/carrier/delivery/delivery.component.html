@@ -1,0 +1,105 @@
+<div>
+    <div class="header">
+        <div class="logo-content">
+            <img class="logo" src="assets/logo.png" />
+            <h3>Thirumathikart</h3>
+        </div>
+        <div>
+            <p-avatar (click)="onProfileClick()" icon="pi pi-user" styleClass="mr-2"
+                [style]="{ 'background-color': 'green', color: '#ffffff' }" shape="circle"></p-avatar>
+        </div>
+    </div>
+    <div class="body">
+        <div class="available">
+            <label>Activate</label>
+            <p-inputSwitch [(ngModel)]="isAvailable" (onChange)="onSwitchChange($event)"></p-inputSwitch>
+        </div>
+        <p-divider></p-divider>
+        <p-tabView *ngIf="headers" [scrollable]="true">
+            <p-tabPanel *ngFor="let key of headers">
+                <ng-template pTemplate="header">
+                    <i [class]="icons.get(key)" style="font-size: 1rem; margin-right: 7.5px;"></i>
+                    <span>{{key}}</span>
+                </ng-template>
+                <div class="order-card" *ngFor="let order of panels.get(key)">
+                    <div class="content">
+                        <div *ngIf="key!='Shipped'">
+                            <div style="display: flex; justify-content: space-between; margin-left: 0.3rem;">
+                                <h4>From</h4>
+                                <a *ngIf="key!='Done'"
+                                    [href]="'https://maps.google.com/?q=' + order.from_address.latitude + ',' + order.from_address.longitude">
+                                    <button type="button" pButton icon="pi pi-map-marker"
+                                        style="background: transparent; color:cornflowerblue; border-color: cornflowerblue;"></button>
+                                </a>
+                            </div>
+                            <div class="address-content">
+                                {{order.from_address.line1}},
+                                {{order.from_address.line2}},
+                                {{order.from_address.landmark}},
+                                {{order.from_address.district}}
+                                <p>{{order.from_address.state}}</p>
+                                <p>{{order.from_address.pin_code}}</p>
+                            </div>
+                            <p-divider></p-divider>
+                        </div>
+
+                        <div *ngIf="key!='Enroute'">
+                            <div style="display: flex; justify-content: space-between;">
+                                <h4>To</h4>
+                                <a *ngIf="key!='Done'"
+                                    [href]="'https://maps.google.com/?q=' + order.from_address.latitude + ',' + order.from_address.longitude">
+                                    <button type="button" pButton icon="pi pi-map-marker"
+                                        style="background: transparent; color:cornflowerblue; border-color: cornflowerblue;"></button>
+                                </a>
+                            </div>
+                            <div class="address-content">
+                                {{order.to_address.line1}},
+                                {{order.to_address.line2}},
+                                {{order.to_address.landmark}},
+                                {{order.to_address.district}}
+                                <p>{{order.to_address.state}} </p>
+                                <p>{{order.to_address.pin_code}}</p>
+                            </div>
+                            <p-divider></p-divider>
+                        </div>
+                        <span *ngIf="key=='New'" class="arrow">
+                            <button (click)="updateStatus('REJECTED',order._id)" 
+                            type="button" pButton
+                            icon="pi pi-times"
+                            label="Reject"
+                            style="background: transparent; color: red; border-color: red; margin-right: 0.5rem;"></button>
+                        <button (click)="updateStatus('ACCEPTED',order._id)" type="button" pButton
+                            icon="pi pi-check"
+                            label="Accept"
+                            style="background: transparent; color: green; border-color: green;"></button>
+                        </span>
+                        <span *ngIf="key=='Enroute'" class="arrow">
+                            <button (click)="updateStatus('SHIPPED',order._id)" 
+                            type="button" pButton
+                            icon="pi pi-truck"
+                            label="Shipped"
+                            style="background: transparent; color: green; border-color: green; margin-right: 0.5rem;"></button>
+                        </span>
+                        <span *ngIf="key=='Shipped'" class="arrow">
+                            <button (click)="updateStatus('DELIVERED',order._id)" 
+                            type="button" pButton
+                            icon="pi pi-verified"
+                            label="Delivered"
+                            style="background: transparent; color: green; border-color: green; margin-right: 0.5rem;"></button>
+                        </span>
+                    </div>
+                    <div style="font-size: 0.8rem; font-weight: bold; padding: 1rem;"  *ngIf="key=='Done'">
+                        
+                        ID: {{order._id}}
+                    </div>
+
+                </div>
+                <div *ngIf="panels.get(key)?.length===0" class="notfound">
+                    <i class="pi pi-folder-open" style="font-size: 10rem;"></i>
+                    <p>No Records Found</p>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+
+</div>

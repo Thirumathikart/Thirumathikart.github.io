@@ -1,0 +1,30 @@
+h2 {
+    text-align: center;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.spinner {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:host ::ng-deep .p-progress-spinner {
+    width: 12rem;
+    height: 12rem;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    font-weight: 600;
+    text-align: center;
+}

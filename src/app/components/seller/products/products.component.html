@@ -1,0 +1,28 @@
+<div class="layout">
+    <div class="header">
+        <div style="width: 100%;" class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input placeholder="Search" type="text" pInputText [(ngModel)]="query" />
+        </div>
+        <p-button  severity="secondary" [rounded]="true" [text]="true">
+            <i style="font-size: 1.5rem" class="pi pi-sliders-h"></i>
+        </p-button>
+    </div>
+    <div *ngFor="let product of products" class="card">
+        <div (click)="goToDetails(product._id)" class="content">
+            <img class="img" [src]="'https:/thirumathikart.nitt.edu/api/product/images' + product.image" />
+            <div class="title-content">
+                <div class="name">
+                    {{ product.name }}
+                    <span class="stock">({{ product.stock }})</span>
+                </div>
+                <div class="chip">
+                    <i class="pi pi-tag text-sm"></i>
+                    <span> {{ product.categories }}</span>
+                </div>
+            </div>
+            <span class="category">₹ {{ product.price }}</span>
+        </div>
+    </div>
+    <p-button (click)="addInventory()"  size="large" class="pos" icon="pi pi-plus" [rounded]="true"></p-button>
+</div>

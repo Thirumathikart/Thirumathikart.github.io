@@ -1,0 +1,8 @@
+<div class="categories">
+    <p-card (click)="navigateProductsList(category.name)"  *ngFor="let category of categories"  [style]="{'min-width': '11rem', 'height': '11rem', 'margin': '0.4rem', 'text-align': 'center', 'display': 'flex', 'justify-content': 'center', 'align-items': 'center', 'background-color': category.code}">
+        <img class="img" [src]="'https://thirumathikart.nitt.edu/api/product/images/categories/'+ category.image" />
+        <div  class="title-card">
+        {{ category.name }}
+        </div> 
+    </p-card>
+</div>
