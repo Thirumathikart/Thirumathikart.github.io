@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/api/user/user.service';
 import { CacheService } from 'src/app/services/cache/cache.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
         public sanitizer: DomSanitizer,
         private userService: UserService,
         private cacheService: CacheService,
+        private messageService: MessageService,
         private router: Router) {}
  
      get() {
@@ -56,9 +58,11 @@ export class ProfileComponent implements OnInit {
             {
               next : (response:any) => { 
                     console.log(response);
+                    this.messageService.add({severity:'success',summary:"Success", detail: "Update Success"})
                 },
                 error: error => {
                   console.log(error.message);
+                  this.messageService.add({severity:'error',summary:"Error", detail: "Update Failed"})
               }
             }
         );

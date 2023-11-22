@@ -9,7 +9,18 @@ export class CacheService {
   }
 
   public isAuthorized(role:number): boolean {
+    if(this.getRole() != this.getStoredRole()) return false;
     return role === this.getRole();
+  }
+
+  public getStoredRole(): number {
+    const role = localStorage.getItem('role');
+    if(role==null) return 0;
+    return parseInt(role)
+  }
+
+  public getFCM() : string | null {
+    return localStorage.getItem('fcm');
   }
 
   public getRole(): number {

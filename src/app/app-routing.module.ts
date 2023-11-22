@@ -77,7 +77,7 @@ export const routes: Routes = [
         data: {role: 2} 
     },
     { 
-        path: 'dashboard', 
+        path: 'seller', 
         component: DashboardComponent, 
         canActivate: [RoleGuard],
         data: {role: 2} 

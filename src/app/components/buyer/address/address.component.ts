@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/api/user/user.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class AddressComponent {
 
     constructor(
         private userService: UserService,  
+        private messageService: MessageService,
         private route: ActivatedRoute, 
         public router: Router){}
 
@@ -41,9 +43,11 @@ export class AddressComponent {
               {
                   next : (response:any) => {
                       console.log(response);
+                      this.messageService.add({severity:'success',summary:"Success", detail: "Update Success"})
                    },
                   error : error => {
                       console.log(error);
+                      this.messageService.add({severity:'error',summary:"Error", detail: "Update Failed"})
                   }
               }
           );

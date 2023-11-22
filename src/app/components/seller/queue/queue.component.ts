@@ -58,7 +58,7 @@ export class QueueComponent implements OnInit {
     private cancelPolling(severity:string, summary:string, detail:string): void {
       this.cancelPolling$.next();
       this.cancelPolling$.complete();
-      this.router.navigate(['dashboard']).then(() => {
+      this.router.navigate(['seller']).then(() => {
         this.messageService.add({ severity: severity, summary: summary, detail: detail });
       });
     }

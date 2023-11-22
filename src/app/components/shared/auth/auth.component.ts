@@ -26,10 +26,19 @@ export class AuthComponent {
     ngOnInit() {
         this.route.queryParams.subscribe((params) => {
             this.role  = this.cacheService.getRole();
-            const fcm = params['fcm'];
-            if(this.role==0||fcm==null||fcm==undefined){
-                this.router.navigate(['**'])
+            if(this.role==0) {
+                this.router.navigate(['**']);
             }
+            var fcm = this.cacheService.getFCM();
+            if(fcm==null) {
+                fcm = params['fcm'];
+                if(fcm==null||fcm==""){
+                    this.router.navigate(['**'])
+                } else {
+                    localStorage.setItem('fcm',fcm);
+                }
+            }
+         
             this.loginForm = new FormGroup({
                 email: new FormControl(""),
                 member_code: new FormControl(""),
@@ -38,6 +47,7 @@ export class AuthComponent {
                 fcm_token: new FormControl(fcm),
                 role: new FormControl(this.role)
             });
+
             this.registerForm = new FormGroup({
                 first_name: new FormControl(""),
                 last_name: new FormControl(""),
@@ -66,10 +76,11 @@ export class AuthComponent {
               next : (user:any) => { 
                  console.log(user);
                  localStorage.setItem('jwt', user.jwt);
+                 localStorage.setItem('role', user.role);
                  var route = '';
                  switch(user.role) {
                     case 1: route = 'home'; break;
-                    case 2: route = 'dashboard'; break;
+                    case 2: route = 'seller'; break;
                     case 3: route = 'delivery';
                  }
                  this.router.navigate([route]).then(()=>{
