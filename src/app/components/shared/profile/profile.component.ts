@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
         private router: Router) {}
  
      get() {
-         this.role = parseInt(this.cacheService.role as string,10)
+         this.role = this.cacheService.getRole();
          this.userService.getUser().subscribe(
              {
                next : (response:any) => { 

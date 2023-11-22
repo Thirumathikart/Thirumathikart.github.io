@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/api/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { CacheService } from 'src/app/services/cache/cache.service';
 
 @Component({
   selector: 'app-auth',
@@ -16,6 +17,7 @@ export class AuthComponent {
     isLogin : boolean = true;
 
     constructor(
+        private cacheService: CacheService,
         private messageService: MessageService,
         private userService: UserService,
         private route: ActivatedRoute,
@@ -23,15 +25,11 @@ export class AuthComponent {
 
     ngOnInit() {
         this.route.queryParams.subscribe((params) => {
-            const roleParam = params['role'];
-            if(roleParam==null||roleParam==undefined){
-                this.router.navigate(['**'])
-            }
+            this.role  = this.cacheService.getRole();
             const fcm = params['fcm'];
-            if(fcm==null||fcm==undefined){
+            if(this.role==0||fcm==null||fcm==undefined){
                 this.router.navigate(['**'])
             }
-            this.role  = parseInt(roleParam, 10);
             this.loginForm = new FormGroup({
                 email: new FormControl(""),
                 member_code: new FormControl(""),
@@ -68,7 +66,6 @@ export class AuthComponent {
               next : (user:any) => { 
                  console.log(user);
                  localStorage.setItem('jwt', user.jwt);
-                 localStorage.setItem('role', user.role);
                  var route = '';
                  switch(user.role) {
                     case 1: route = 'home'; break;

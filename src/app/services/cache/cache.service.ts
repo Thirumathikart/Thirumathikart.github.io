@@ -3,23 +3,25 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CacheService {
 
-  token!:string | null;
-  role!:string | null;
-
-  constructor() {
-    this.token = localStorage.getItem('jwt');
-    this.role = localStorage.getItem('role');
-  }
-
   public isAuthenticated(): boolean {
-    this.token = localStorage.getItem('jwt');
-    return this.token !== null && this.token !== undefined;
+    const token = localStorage.getItem('jwt');
+    return token !== null && token !== undefined;
   }
 
   public isAuthorized(role:number): boolean {
-    this.role = localStorage.getItem('role');
-    if(this.role == null || this.role == undefined) return false;
-    return role === parseInt(this.role, 10);
+    return role === this.getRole();
+  }
+
+  public getRole(): number {
+    var role = 0;
+    if(document.referrer.includes('android-app://dev.tkart.buyer')){
+        role = 1;
+    }else if(document.referrer.includes('android-app://dev.tkart.seller')){
+        role = 2;
+    }else if(document.referrer.includes('android-app://dev.tkart.carrier')){
+        role = 3;
+    }
+    return role;
   }
 
 }

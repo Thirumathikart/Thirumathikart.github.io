@@ -15,9 +15,8 @@ export class NotFoundComponent implements OnInit {
     ngOnInit() {
        if(this.router.url === '' ||  this.router.url === '/'){
         this.route.queryParams.subscribe((params) => {
-            const role = params['role'];
             const fcm = params['fcm'];
-            this.router.navigate(['auth'], { queryParams: { role: role, fcm: fcm } });
+            this.router.navigate(['auth'], { queryParams: { fcm: fcm } });
         })
        }
     }
