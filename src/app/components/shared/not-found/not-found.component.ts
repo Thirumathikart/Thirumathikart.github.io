@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { CacheService } from 'src/app/services/cache/cache.service';
 
 @Component({
   selector: 'app-not-found',
@@ -10,14 +11,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class NotFoundComponent implements OnInit {
 
     constructor(
-        private route: ActivatedRoute,
+        private cacheService: CacheService,
         private router: Router){}
+
     ngOnInit() {
        if(this.router.url === '' ||  this.router.url === '/'){
-        this.route.queryParams.subscribe((params) => {
-            const fcm = params['fcm'];
-            this.router.navigate(['auth'], { queryParams: { fcm: fcm } });
-        })
+            this.router.navigate(['auth'],  { queryParams: { role:  this.cacheService.getRole()} });
        }
     }
  

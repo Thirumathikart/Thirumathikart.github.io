@@ -26,8 +26,14 @@ export class AuthComponent {
     ngOnInit() {
         this.route.queryParams.subscribe((params) => {
             this.role  = this.cacheService.getRole();
+            console.log(this.role);
             if(this.role==0) {
-                this.router.navigate(['**']);
+                this.role = params['role'];
+                if(this.role==null){
+                    this.router.navigate(['**']);
+                } else {
+                this.role = Number(this.role)
+                }
             }
             var fcm = this.cacheService.getFCM();
             if(fcm==null) {
