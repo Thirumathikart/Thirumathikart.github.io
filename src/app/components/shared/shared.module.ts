@@ -8,12 +8,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProfileComponent } from './profile/profile.component';
 import { DividerModule } from 'primeng/divider';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
     AuthComponent,
     NotFoundComponent,
-    ProfileComponent
+    ProfileComponent,
+    UnauthorizedComponent
   ],
   imports: [
     CommonModule,

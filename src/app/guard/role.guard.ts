@@ -10,13 +10,13 @@ export class RoleGuard {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     const role  = parseInt(route.data['role'], 10);
-    console.log("guard:"+ role);
+ 
     if (!this.auth.isAuthenticated()) {
         this.router.navigate(['auth']);
         return false;
     }
     else if (!this.auth.isAuthorized(role)) {
-        this.router.navigate(['**']);
+        this.router.navigate(['unauthorized']);
         return false;
     }
     return true;

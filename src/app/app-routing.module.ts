@@ -16,6 +16,7 @@ import { ProductsComponent } from './components/seller/products/products.compone
 import { InventoryComponent } from './components/seller/inventory/inventory.component';
 import { QueueComponent } from './components/seller/queue/queue.component';
 import { DeliveryComponent } from './components/carrier/delivery/delivery.component';
+import { UnauthorizedComponent } from './components/shared/unauthorized/unauthorized.component';
 
 
 export const routes: Routes = [
@@ -92,9 +93,9 @@ export const routes: Routes = [
         path: 'not-found',
         component: NotFoundComponent,
     },
-    { 
-        path: '**', 
-        redirectTo: 'not-found'
+    {
+        path: 'unauthorized',
+        component: UnauthorizedComponent,
     },
   ];
 
