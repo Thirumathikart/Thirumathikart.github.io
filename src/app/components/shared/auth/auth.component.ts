@@ -28,18 +28,18 @@ export class AuthComponent {
             this.role  = this.cacheService.getRole();
             console.log(this.role);
             if(this.role==0) {
-                this.role = params['role'];
-                if(this.role==null){
-                    this.router.navigate(['**']);
+                const roleParam = params['role'];
+                if(roleParam ==null){
+                    this.router.navigate(['not-found']);
                 } else {
-                this.role = Number(this.role)
+                this.role = Number(roleParam)
                 }
             }
             var fcm = this.cacheService.getFCM();
             if(fcm==null) {
                 fcm = params['fcm'];
                 if(fcm==null||fcm==""){
-                    this.router.navigate(['**'])
+                    this.router.navigate(['not-found']);
                 } else {
                     localStorage.setItem('fcm',fcm);
                 }

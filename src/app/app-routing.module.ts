@@ -88,9 +88,13 @@ export const routes: Routes = [
         canActivate: [RoleGuard],
         data: {role: 3} 
     },
+    {
+        path: 'not-found',
+        component: NotFoundComponent,
+    },
     { 
         path: '**', 
-        component: NotFoundComponent
+        redirectTo: 'not-found'
     },
   ];
 

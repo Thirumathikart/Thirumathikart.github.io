@@ -5,7 +5,7 @@ export class CacheService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('jwt');
-    return token !== null && token !== undefined;
+    return token !== null;
   }
 
   public isAuthorized(role:number): boolean {

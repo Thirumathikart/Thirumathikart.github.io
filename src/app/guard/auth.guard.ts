@@ -8,9 +8,7 @@ export class AuthGuard {
 
   constructor(public auth: CacheService, public router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    const role = route.data['role'];
-    console.log(role);
+  canActivate(): Observable<boolean> | boolean {
     if (!this.auth.isAuthenticated()) {
         this.router.navigate(['auth']);
         return false;
