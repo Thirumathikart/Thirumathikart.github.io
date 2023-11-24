@@ -7,7 +7,7 @@
     </div>
     <img 
     class="img"
-    [src]="'https:/thirumathikart.nitt.edu/api/product/images' + product.image"
+    [src]="product.image   | safeUrl | async"
     alt="Image"/>
     <div class="layout">
         <div class="title-frame">
@@ -21,7 +21,7 @@
                 </div>
             </p-chip>
         </div>
-        <div class="counter">
+        <div *ngIf="product.stock>0" class="counter">
             <p-button (click)="decrement()">
                 <i  class="pi pi-minus"></i> 
             </p-button>
@@ -30,6 +30,9 @@
                 <i class="pi pi-plus"></i>
             </p-button> 
         </div>
+        <div  *ngIf="product.stock==0">
+            Out of Stock
+        </div>
         <p-tabView [(activeIndex)]="activeIndex">
             <p-tabPanel header="Description">
                 <p>
@@ -37,7 +40,7 @@
                 </p>
             </p-tabPanel>
             <p-tabPanel header="Seller">
-                <div style="display: flex;">
+                <div *ngIf="seller" style="display: flex;">
                     <div style="flex: 3;">
                         {{seller.address[0].line1}},
                         {{seller.address[0].line2}},
@@ -47,7 +50,7 @@
                         <p>{{seller.address[0].pin_code}}</p>
                     </div>
                     <div  style=" display: flex;  gap: 0.5rem; flex: 1;">
-                        <a [href]="'telto:+91'+seller.contact_number">
+                        <a [href]="'tel:+91'+seller.contact_number">
                             <button type="button" pButton icon="pi pi-phone"
                                 style="background: transparent; color:cornflowerblue; border-color: cornflowerblue; margin-right: 0.5rem;"></button>
                         </a>

@@ -1,5 +1,5 @@
 <div *ngIf="headers">
-    <p-tabView *ngIf="headers" [scrollable]="true" >
+    <p-tabView *ngIf="headers" [scrollable]="true">
         <p-tabPanel *ngFor="let key of headers">
             <ng-template pTemplate="header">
                 <i [class]="icons.get(key)" style="font-size: 1rem; margin-right: 7.5px;"></i>
@@ -7,42 +7,75 @@
             </ng-template>
             <div *ngFor="let order of panels.get(key)">
                 <div class="order-card" *ngFor="let item of order.items">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; ">
+                            <h4>From</h4>
+                            <div *ngIf="key!='Delivered'">
+                                <a [href]="'tel:'+order.buyer.contact_number">
+                                    <button type="button" pButton icon="pi pi-phone"
+                                        style="background: transparent; color:rgb(122, 179, 253); border-color: rgb(122, 179, 253);"></button>
+                                </a>
+
+                                <a style="padding-left: 0.5rem;" 
+                                    [href]="'https://maps.google.com/?q=' + order.buyer.address[0].latitude + ',' + order.buyer.address[0].longitude">
+                                    <button type="button" pButton icon="pi pi-map-marker"
+                                        style="background: transparent; color:rgb(253, 122, 122); border-color: rgb(253, 122, 122);"></button>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            {{order.buyer.address[0].line1}},
+                            {{order.buyer.address[0].line2}},
+                            {{order.buyer.address[0].landmark}}
+                            <p>{{order.buyer.address[0].district}}</p>
+                            <p>{{order.buyer.address[0].state}}</p>
+                            <p>{{order.buyer.address[0].pin_code}}</p>
+                        </div>
+                    </div>
+                    <p-divider></p-divider>
                     <div class="content">
-                        <img class="img" [src]="'https:/thirumathikart.nitt.edu/api/product/images' + item.image" />
+                        <img class="img" [src]="item.image   | safeUrl | async" />
                         <div class="title-content">
                             <div class="name">
                                 {{ item.name }}
-                                <span class="quantity">({{ item.quantity }})</span>
+
                             </div>
-                            <div class="id">
-                                #{{item._id }}
+                            <div class="quantity">
+                                ({{ item.quantity }})
                             </div>
                         </div>
-                        <span *ngIf="key=='New'"  class="arrow">
-                            <button (click)="updateStatus('REJECTED',order._id)" type="button" pButton icon="pi pi-times"
-                                style="background: transparent; color: red; border-color: red;"></button>
-                            <button (click)="updateStatus('ACCEPTED',order._id)" type="button" pButton icon="pi pi-check"
-                                style="background: transparent; color: green; border-color: green;"></button>
-                        </span>
+                        <div class="quantity">
+                            {{item.quantity * item.price | currency:'INR':'symbol':'0.0-0'}}
+                        </div>
+                    </div>
+                    <p-divider *ngIf="!(key=='Shipped' || key=='Delivered')"></p-divider>
+                    <span *ngIf="key=='New'" class="arrow">
+                        <button (click)="updateStatus('REJECTED',order._id)" type="button" pButton icon="pi pi-times"
+                            style="background: transparent; color: red; border-color: red;"></button>
+                        <button (click)="updateStatus('ACCEPTED',order._id)" type="button" pButton icon="pi pi-check"
+                            style="background: transparent; color: green; border-color: green;"></button>
+                    </span>
 
-    
-                        <span *ngIf="key=='Accepted'" class="arrow">
-                        <button  (click)="updateStatus('PREPARED',order._id)" type="button" pButton
-                        style=" background: transparent; color:palevioletred; border-color: palevioletred;" icon="pi pi-shopping-bag"></button>   
-                      </span>
+                    <span *ngIf="key=='Accepted'" class="arrow">
+                        <button (click)="onClick(order._id)" type="button" pButton
+                        style=" background: transparent; color:coral; border-color: coral;"
+                        icon="pi pi-file"></button>
+                        <button (click)="updateStatus('PREPARED',order._id)" type="button" pButton
+                            style=" background: transparent; color:palevioletred; border-color: palevioletred;"
+                            icon="pi pi-shopping-bag"></button>
+                    </span>
 
-                      <span *ngIf="key=='Packed'" class="arrow">
-                        <a *ngIf="key!='Done'" [href]="' https://wa.me/91'+order.carrier.contact_number">
+                    <span *ngIf="key=='Packed'" class="arrow">
+                        <a *ngIf="key!='Delivered'" [href]="'https://wa.me/91'+order.carrier.contact_number">
                             <button type="button" pButton icon="pi pi-whatsapp"
                                 style="background: transparent; color:rgb(43, 169, 43); border-color: rgb(43, 169, 43); "></button>
                         </a>
-                        <a *ngIf="key!='Done'" [href]="'telto:+91'+order.carrier.contact_number">
+                        <a *ngIf="key!='Delivered'" [href]="'tel:+91'+order.carrier.contact_number">
                             <button type="button" pButton icon="pi pi-phone"
                                 style="background: transparent; color:cornflowerblue; border-color: cornflowerblue; margin-right: 0.5rem;"></button>
                         </a>
-                      </span>
+                    </span>
 
-                    </div>
                 </div>
             </div>
             <div *ngIf="panels.get(key)?.length===0" class="notfound">

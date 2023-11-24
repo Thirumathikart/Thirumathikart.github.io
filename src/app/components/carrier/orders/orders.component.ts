@@ -39,8 +39,7 @@ export class DeliveryOrdersComponent {
                     this.headers =  Array.from(this.panels.keys());
                 },
                 error: error => {
-                    console.log(error.message);
-                    this.messageService.add({ severity: 'error', summary: "Error", detail: 'Failed to Fetch' });
+                    this.messageService.add({ severity: 'error', summary: "Error", detail: 'Failed to Fetch, Try again Later' });
                 }
             }
         );

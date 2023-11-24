@@ -13,7 +13,7 @@ import { LocationService } from 'src/app/services/location/location.service';
 export class DeliveryComponent {
     isAvailable!:boolean;
 
-    selectedMenu = 2;
+    selectedMenu = 0;
     menus: any[] = [
         {
             index: 0,

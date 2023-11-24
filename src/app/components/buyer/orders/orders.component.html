@@ -1,8 +1,8 @@
 <div *ngIf="orders">
     <div *ngFor="let order of orders">
         <div class="order-card" *ngFor="let item of order.items">
-            <div class="content">
-                <img class="img" [src]="'https:/thirumathikart.nitt.edu/api/product/images' + item.image" />
+            <div (click)="onClick(order._id)" class="content">
+                <img class="img" [src]="item.image   | safeUrl | async" />
                 <div class="title-content">
                     <div class="name">{{ item.name }}</div>
                     <div class="status">

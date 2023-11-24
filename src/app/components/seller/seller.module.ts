@@ -14,9 +14,12 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { TabViewModule } from 'primeng/tabview';
+import { DividerModule } from 'primeng/divider';
+import { AccordionModule } from 'primeng/accordion';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { InventoryComponent } from './inventory/inventory.component';
 import { QueueComponent } from './queue/queue.component';
+import { PipeModule } from 'src/app/pipes/pipe.module';
 
 @NgModule({
   declarations: [
@@ -39,8 +42,11 @@ import { QueueComponent } from './queue/queue.component';
     DropdownModule,
     SpeedDialModule,
     TabViewModule,
+    DividerModule,
+    AccordionModule ,
     ProgressSpinnerModule,
     ReactiveFormsModule,
-  ]
+    PipeModule,
+  ],
 })
 export class SellerModule { }

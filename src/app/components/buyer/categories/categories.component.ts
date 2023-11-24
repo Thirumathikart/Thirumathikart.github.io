@@ -18,6 +18,9 @@ export class CategoriesComponent implements OnInit {
             {
               next : (response:any) => { 
                     console.log(response);
+                    for(let [index, cat] of response.categories.entries()) {
+                        response.categories[index].image = `categories/${cat.image}`
+                    }
                     this.categories = response.categories;
                 },
                 error: error => {

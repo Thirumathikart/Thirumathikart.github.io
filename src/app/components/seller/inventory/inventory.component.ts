@@ -4,8 +4,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { FileSelectEvent, FileUpload } from 'primeng/fileupload';
 import { ProductService } from 'src/app/services/api/product/product.service';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-
 
 @Component({
     selector: 'app-add-inventory',
@@ -23,7 +21,6 @@ export class InventoryComponent implements OnInit {
     constructor(
         private productService: ProductService,
         private route: ActivatedRoute,
-        private sanitizer: DomSanitizer,
         private messageService: MessageService) { }
 
     ngOnInit(): void {
@@ -49,10 +46,6 @@ export class InventoryComponent implements OnInit {
             }
         );
     }
-    getSafeUrl(file: File): SafeUrl {
-        const objectURL = URL.createObjectURL(file);
-        return this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    }
 
     getProduct() {
         if (this.id) {
@@ -62,33 +55,14 @@ export class InventoryComponent implements OnInit {
                         console.log(response);
                         const product = response.product;
                         await this.getCategories();
-
-                        fetch(`https://thirumathikart.nitt.edu/api/product/images/${product.image}`)
-                            .then(response => response.blob())
-                            .then(blob => {
-                                const file = new File([blob], product.image, { type: 'image/png' });
-                                const files: File[] = [file]
-                                this.fileUpload.files = files;
-                                
-                                this.productForm.patchValue({
-                                    file: file
-                                });
-                            
-                            })
-                            .catch(error => {
-                                console.error('Error fetching the image:', error);
-                            });
-                            this.productForm = new FormGroup({
-                                name: new FormControl(product.name),
-                                category: new FormControl(product.categories),
-                                description: new FormControl(product.description),
-                                stock: new FormControl(product.stock),
-                                price: new FormControl(product.price),
-                                file: new FormControl()
-                            });
-
-                    
-    
+                        this.productForm = new FormGroup({
+                            name: new FormControl(product.name),
+                            category: new FormControl(product.categories),
+                            description: new FormControl(product.description),
+                            stock: new FormControl(product.stock),
+                            price: new FormControl(product.price),
+                            file: new FormControl(product.image)
+                        });
                     },
                     error: error => {
                         console.log(error.message);
@@ -108,8 +82,6 @@ export class InventoryComponent implements OnInit {
         }
     }
 
-    //"1700248368372363302-418.jpg"
-
     fileUploader(event: FileSelectEvent) {
         const file = event.files && event.files[0];
         this.productForm.patchValue({
@@ -126,7 +98,6 @@ export class InventoryComponent implements OnInit {
     onUpload() {
         const formData = new FormData();
 
-        // Append other form data if needed
         formData.append('name', this.productForm.get('name')?.value);
         formData.append('categories', this.productForm.get('category')?.value);
         formData.append('description', this.productForm.get('description')?.value);
@@ -136,7 +107,6 @@ export class InventoryComponent implements OnInit {
         const fileInput: File = this.productForm.get('file')?.value;
 
         formData.append('file', fileInput, fileInput.name);
-
 
         if (this.id == undefined) {
             this.productService.addProduct(formData).subscribe(
@@ -151,7 +121,7 @@ export class InventoryComponent implements OnInit {
                 }
             );
         } else {
-            this.productService.updateProduct(this.id,formData).subscribe(
+            this.productService.updateProduct(this.id, formData).subscribe(
                 {
                     next: async (response: any) => {
                         console.log(response);

@@ -32,7 +32,7 @@ export class CacheService {
     }else if(document.referrer.includes('android-app://dev.tkart.carrier')){
         role = 3;
     }
-    return 3;
+    return 2;
   }
 
 }

@@ -1,0 +1,93 @@
+<div class="frame">
+    <div>
+        <h3>From Address</h3>
+        <div  class="address-card">
+            <div style="
+    display: flex; flex-direction: row; 
+    justify-content: space-between; align-items: center;">
+                <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+                    <iframe style="border-radius: 10px; padding: 10px;" width="50%" frameborder="0" scrolling="no"
+                        marginheight="0" marginwidth="0" [src]="sanitizer.bypassSecurityTrustResourceUrl(mapsurl(order.seller.address[0]))">
+                    </iframe>
+                    <p-divider styleClass="hidden md:flex" layout="vertical"></p-divider>
+                    <div width="50%">
+                        <p>{{order.seller.address[0].line1}}</p>
+                        <p>{{order.seller.address[0].line2}}</p>
+                        <p>{{order.seller.address[0].landmark}}</p>
+                        <p>{{order.seller.address[0].district}}</p>
+                        <p>{{order.seller.address[0].state}}</p>
+                        <p>{{order.seller.address[0].pin_code}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Shipping Address</h3>
+        <div  class="address-card">
+            <div style="
+    display: flex; flex-direction: row; 
+    justify-content: space-between; align-items: center;">
+                <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+                    <iframe style="border-radius: 10px; padding: 10px;" width="50%" frameborder="0" scrolling="no"
+                        marginheight="0" marginwidth="0" [src]="sanitizer.bypassSecurityTrustResourceUrl(mapsurl(order.buyer.address[0]))">
+                    </iframe>
+                    <p-divider styleClass="hidden md:flex" layout="vertical"></p-divider>
+                    <div width="50%">
+                        <p>{{order.buyer.address[0].line1}}</p>
+                        <p>{{order.buyer.address[0].line2}}</p>
+                        <p>{{order.buyer.address[0].landmark}}</p>
+                        <p>{{order.buyer.address[0].district}}</p>
+                        <p>{{order.buyer.address[0].state}}</p>
+                        <p>{{order.buyer.address[0].pin_code}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h3>Products Ordered</h3>
+        <div class="card">
+            <p-table [value]="order.items">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Unit</th>
+                        <th>Tot</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body">
+                    <tr *ngFor="let product of order.items">
+                        <td>
+                            <div
+                                style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img width="75px" height="75px" [src]="product.image | safeUrl | async">
+                                <br>
+                                <div>{{product.name}}</div>
+                            </div>
+                        </td>
+                        <td>{{product.quantity}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.quantity * product.price}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Delivery Charge</td>
+                        <td>60</td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="summary">
+                    <div class="tot">
+                        {{getTotal()}}
+                    </div>
+                </ng-template>
+            </p-table>
+            <br>
+            <h3>Payment Mode</h3>
+            <div class="payment-card">
+                <i class="pi pi-money-bill" style="font-size: 2rem; color: green; padding-left: 1rem;"></i>
+                Cash On Delivery
+            </div>
+        </div>
+    </div>
+</div>

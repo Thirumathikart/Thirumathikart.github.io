@@ -24,6 +24,7 @@ import { AddressComponent } from './address/address.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { SharedModule } from '../shared/shared.module';
+import { PipeModule } from 'src/app/pipes/pipe.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { SharedModule } from '../shared/shared.module';
     PaymentComponent,
     AddressComponent,
     OrdersComponent,
-    CategoriesComponent,
+    CategoriesComponent
   ],
   imports: [
     SharedModule,
@@ -54,6 +55,7 @@ import { SharedModule } from '../shared/shared.module';
     TableModule,
     DividerModule,
     RadioButtonModule,
+    PipeModule,
   ]
 })
 export class BuyerModule { }

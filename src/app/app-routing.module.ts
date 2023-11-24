@@ -17,6 +17,7 @@ import { InventoryComponent } from './components/seller/inventory/inventory.comp
 import { QueueComponent } from './components/seller/queue/queue.component';
 import { DeliveryComponent } from './components/carrier/delivery/delivery.component';
 import { UnauthorizedComponent } from './components/shared/unauthorized/unauthorized.component';
+import { OrderDetailsComponent } from './components/shared/order-details/order-details.component';
 
 
 export const routes: Routes = [
@@ -25,6 +26,11 @@ export const routes: Routes = [
         component: PaymentComponent,
         canActivate: [RoleGuard],
         data: {role: 1}
+    },
+    { 
+        path: 'order', 
+        component: OrderDetailsComponent,
+        canActivate: [AuthGuard],
     },
     { 
         path: 'products', 

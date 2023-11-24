@@ -8,8 +8,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProfileComponent } from './profile/profile.component';
 import { DividerModule } from 'primeng/divider';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { SupportComponent } from './support/support.component';
+import { PipeModule } from 'src/app/pipes/pipe.module';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { SupportComponent } from './support/support.component';
     NotFoundComponent,
     ProfileComponent,
     UnauthorizedComponent,
-    SupportComponent
+    SupportComponent,
+    OrderDetailsComponent 
   ],
   imports: [
     CommonModule,
@@ -28,6 +32,8 @@ import { SupportComponent } from './support/support.component';
     ButtonModule,
     DividerModule,
     InputTextModule,
+    TableModule,
+    PipeModule
   ],
   exports: [
     ProfileComponent,

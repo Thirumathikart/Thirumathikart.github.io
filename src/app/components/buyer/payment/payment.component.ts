@@ -66,7 +66,7 @@ export class PaymentComponent implements OnInit {
         for(const product of this.products){
             total+=(product.quantity * product.price);
         }
-        return total;
+        return total + 60;
     }
 
     addAddress() {

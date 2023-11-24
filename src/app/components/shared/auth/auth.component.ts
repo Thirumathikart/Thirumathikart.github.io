@@ -26,7 +26,6 @@ export class AuthComponent {
     ngOnInit() {
         this.route.queryParams.subscribe((params) => {
             this.role  = this.cacheService.getRole();
-            console.log(this.role);
             if(this.role==0) {
                 const roleParam = params['role'];
                 if(roleParam ==null){

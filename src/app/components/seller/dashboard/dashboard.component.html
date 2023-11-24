@@ -1,7 +1,7 @@
 <div>
     <div class="header">
         <div class="logo-content">
-            <img class="logo" src="assets/logo.png" />
+            <!-- <img class="logo" src="assets/logo.png" /> -->
             <h3>Thirumathikart</h3>
         </div>
     </div>
@@ -14,6 +14,44 @@
         </div>
         <div *ngIf="selectedMenu==2">
             <app-profile></app-profile>
+        </div>
+        <div *ngIf="selectedMenu==3">
+            <p-accordion [multiple]="true" [activeIndex]="[0]">
+                <p-accordionTab header="FSSAI Certificate">
+                    <a href="https://foscos.fssai.gov.in/">
+                        Registration link
+                    </a>
+                    <br>
+                    <a href="https://www.fssai.gov.in/cms/registration.php">
+                        User Manual
+                    </a>
+                </p-accordionTab>
+                <p-accordionTab header="GST Certificate">
+                    <a href="https://reg.gst.gov.in/registration/">
+                        Registration link
+                    </a>
+                    <br>
+                    <a href="https://youtube.com/@GoodsandServicesTaxNetwork?si=2Fu9jQlOq6KypSad">
+                        GST youtube
+                    </a>
+                </p-accordionTab>
+                <p-accordionTab header="Raw-materials Wholesale">
+                    <a href="https://www.marketmirchi.com">
+                        Market Mirchi
+                    </a>
+                </p-accordionTab>
+                <p-accordionTab header="Buying Machines for bulk Production">
+                    <a href="https://gem.gov.in/">
+                        Government e Marketplace (GeM)
+                    </a>
+                    <br>
+                    <a href="https://thirumathikart.nitt.edu/">
+                        Thirumathikart website
+                    </a>
+                </p-accordionTab>
+            </p-accordion>
+            <p-divider></p-divider>
+            <app-support></app-support>
         </div>
     </div>
     <div class="footer">

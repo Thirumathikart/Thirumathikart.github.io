@@ -22,3 +22,26 @@
 .body {
     padding: 1rem;
 }
+
+:host ::ng-deep p-button-label {
+    white-space: break-word;
+    word-break: break-all;
+}
+
+:host ::ng-deep .p-card  {
+ background: transparent !important;
+ color: #3B82F6;
+ box-shadow: none;
+ text-align: start;
+ font-weight: 600;
+}
+
+:host ::ng-deep .p-card .p-card-body  {
+    padding: 0;
+    
+}
+
+:host ::ng-deep  .p-card .p-card-content {
+    padding: 0;
+    padding-left: 1rem;
+}

@@ -73,4 +73,8 @@ export class OrdersComponent  implements OnInit {
         );
     }
 
+    onClick(id:string) {
+        this.router.navigate(['/order'], { queryParams: { id: id } });
+    }
+
 }

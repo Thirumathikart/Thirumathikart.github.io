@@ -14,9 +14,7 @@ export class UnauthorizedComponent implements OnInit {
         private router: Router){}
 
     ngOnInit() {
-       if(this.router.url === '' ||  this.router.url === '/'){
-            this.router.navigate(['auth'],  { queryParams: { role:  this.cacheService.getRole()} });
-       }
+        this.router.navigate(['auth'],  { queryParams: { role:  this.cacheService.getRole()} });
     }
  
 }

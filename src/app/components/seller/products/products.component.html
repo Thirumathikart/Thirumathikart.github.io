@@ -7,7 +7,7 @@
     </div>
     <div *ngFor="let product of products" class="card">
         <div (click)="goToDetails(product._id)" class="content">
-            <img class="img" [src]="'https:/thirumathikart.nitt.edu/api/product/images/' + product.image" />
+            <img class="img" [src]="product.image   | safeUrl | async" />
             <div class="title-content">
                 <div class="name">
                     {{ product.name }}

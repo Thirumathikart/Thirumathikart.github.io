@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { SharedModule } from '../shared/shared.module';
 import { DeliveryOrdersComponent } from './orders/orders.component';
+import { PipeModule } from 'src/app/pipes/pipe.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DeliveryOrdersComponent } from './orders/orders.component';
     TabViewModule,
     DividerModule,
     AvatarModule,
-    InputSwitchModule
+    InputSwitchModule,
+    PipeModule
   ]
 })
 export class CarrierModule { }

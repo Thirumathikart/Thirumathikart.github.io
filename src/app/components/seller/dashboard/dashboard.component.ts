@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
         },
         {
             index: 3,
-            label: 'Help',
+            label: 'Info',
             icon: PrimeIcons.INFO_CIRCLE
         }
     ];

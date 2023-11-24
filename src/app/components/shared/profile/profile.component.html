@@ -46,7 +46,7 @@
             <div style="
         display: flex; flex-direction: row; 
         justify-content: space-between; align-items: center;">
-                <div style="display: flex; gap: 10px;">
+                <div style="display: flex; gap: 10px; width: 100%; justify-content: flex-end;">
                     <button (click)="updateAddress(add._id)" type="button" pButton icon="pi pi-pencil"
                         style="background: transparent; color: orange; border-color: orange;"></button>
                 </div>
@@ -69,7 +69,7 @@
 
         </div>
         <br>
-        <p-button *ngIf="!(role===2 && user.address.length>0)" (onClick)="addAddress()" class="field"
+        <p-button *ngIf="!(role===2 && user.address != undefined && user.address.length>0)" (onClick)="addAddress()" class="field"
             label="Add Address"></p-button>
     </div>
     <p-divider></p-divider>

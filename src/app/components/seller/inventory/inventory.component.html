@@ -12,7 +12,7 @@
                 [showUploadButton]="false" accept="image/*">
                 <ng-template let-file let-i="index" pTemplate="file">
                     <div class="file-content">
-                        <img style="flex: '1';" [src]="getSafeUrl(file)" height="50px" width="50px">
+                        <img style="flex: '1';" [src]="productForm.get('file')?.value | safeUrl" height="50px" width="50px">
                         <div style="flex: '1'; font-size: 12px;">{{file.name}}</div>
                         <div style="flex: '2';">
                             <p-button (click)="removeFile($event,i)" icon="pi pi-times"></p-button>
