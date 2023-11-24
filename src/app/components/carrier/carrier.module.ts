@@ -8,10 +8,12 @@ import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { SharedModule } from '../shared/shared.module';
+import { DeliveryOrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
     DeliveryComponent,
+    DeliveryOrdersComponent,
   ],
   imports: [
     CommonModule,

@@ -14,19 +14,6 @@
     padding: 0.75rem;
 }
 
-.available {
-    display: flex;
-    flex-direction: row;
-    padding: 0.4rem 1rem;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1rem;
-    label {
-        font-weight: 600;
-        font-size: 1rem;
-    }
-}
-
 .logo-content {
     display: flex;
     align-items: center;
@@ -58,94 +45,6 @@
     }
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 2px;
-    gap: 0.75rem;
-}
-
-.title-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.name {
-    font-size: 1.2rem;
-    margin-bottom: 0.3rem;
-    font-weight: bold;
-}
-
-.id {
-    font-size: 0.6rem;
-    margin-bottom: 0.3rem;
-    font-style: italic;
-}
-
-.quantity {
-    font-weight: 500;
-    font-size: 1rem;
-}
-
-.arrow {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    font-size: 0.5rem;
-    font-weight: bold;
-}
-
-.order-card {
-    padding: 0.5rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-}
-
-.img {
-    width: 4.5rem;
-    height: 4.5rem;
-    box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
-    border-radius: 0.25rem;
-}
-
-.location {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 1.2rem;
-}
-
-.address-content {
-    padding-left: 1rem;
-}
-
-p {
-    margin: 0rem;
-    padding: 0;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-h4 {
-    font-size: 1.125rem;
-    margin: 0.5rem 0.8rem;
-}
-
-.notfound {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 4rem;
-    p {
-        font-weight: 600;
-        font-size: 1.5rem;
-    }
-}
 
 :host ::ng-deep  .p-inputswitch  {
     height: 1.4rem;
@@ -158,19 +57,23 @@ h4 {
     background: green;
 }
 
+.footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    height: 4rem;
+    box-shadow: 0 -2px 3px 1px rgba(0, 0, 0, 0.1);
+    background: white;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.75rem;
+    font-weight: 500;
 
-:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-    color: green;
-    border-color: green;
-}
-
-:host ::ng-deep .p-tabview .p-tabview-nav-btn.p-link {
-    width: 1.8rem;
-    color: green;
-}
-
-:host ::ng-deep .p-divider.p-divider-horizontal  {
-    margin-bottom: 0;
-    margin-top: 0.5rem;
-
+    div {
+        padding-top: 0.5rem;
+        font-size: 0.9rem;
+        text-align: center;
+    }
 }

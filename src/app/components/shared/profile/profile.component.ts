@@ -16,8 +16,9 @@ export class ProfileComponent implements OnInit {
     role!: number
 
     ngOnInit(): void {
-        this.get()
-     }
+        this.role = this.cacheService.getRole();
+        this.get();
+    }
 
     constructor(
         public sanitizer: DomSanitizer,
@@ -27,11 +28,9 @@ export class ProfileComponent implements OnInit {
         private router: Router) {}
  
      get() {
-         this.role = this.cacheService.getRole();
          this.userService.getUser().subscribe(
              {
                next : (response:any) => { 
-                     console.log(response);
                      this.user = response
                      const first_name = this.user.first_name
                      this.user.first_name = {
@@ -79,5 +78,11 @@ export class ProfileComponent implements OnInit {
 
     mapsurl(add:any){
         return `https://www.google.com/maps?q=${add.latitude},${add.longitude}&z=14&output=embed`
+    }
+
+    logout() {
+        const fcm = this.cacheService.getFCM();
+        localStorage.clear();
+        this.router.navigate(['auth'], { queryParams: { fcm: fcm } });
     }
 }

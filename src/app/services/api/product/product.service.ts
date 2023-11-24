@@ -47,7 +47,7 @@ import { httpResponse } from '../../../models/http';
     }
 
     searchProduct(query:string, from: number, size: number, category:string, sort:string, order:boolean) :Observable<any> {
-        return this.httpClient.get<httpResponse>(this.base+`/product?query=${query}&from=${from}&size=${size}&category=${category}&sort=${sort}&order=${order}`,{
+        return this.httpClient.get<httpResponse>(this.base+`/product?query=${query}&from=${from}&size=${size}&category=${category.toLowerCase()}&sort=${sort}&order=${order}`,{
             headers: this.headers
         });
     }

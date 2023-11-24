@@ -9,22 +9,29 @@
     </div>
     <div class="frame" *ngIf="activeIndex==0">
         <div *ngFor="let add of address" class="address-card">
-            <div 
-            style="display: flex; flex-direction: row; 
-            justify-content: space-between; align-items: center;">
-              <i class="pi pi-map-marker" style="font-size: 2rem"></i>
-              <p-radioButton value="{{add._id}}" [(ngModel)]="addressID" inputId="{{add._id}}"></p-radioButton>
+            <div style="
+        display: flex; flex-direction: row; 
+        justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 10px;">
+                    <p-radioButton value="{{add._id}}" [(ngModel)]="addressID" inputId="{{add._id}}"></p-radioButton>
+                </div>
             </div>
             <p-divider></p-divider>
-            <div>
-                <p>{{add.line1}}</p>
-                <p>{{add.line2}}</p>
-                <p>{{add.landmark}}</p>
-                <p>{{add.district}}</p>
-                <p>{{add.state}}</p>
-                <p>{{add.pin_code}}</p>
-           </div>
-           <p-button *ngIf="add._id === addressID" (click)="activeIndex=1" class="field" label="Deliver To this Address"></p-button>
+            <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+                <iframe style="border-radius: 10px; padding: 10px;" width="50%" frameborder="0" scrolling="no"
+                    marginheight="0" marginwidth="0" [src]="sanitizer.bypassSecurityTrustResourceUrl(mapsurl(add))">
+                </iframe>
+                <p-divider styleClass="hidden md:flex" layout="vertical"></p-divider>
+                <div width="50%">
+                    <p>{{add.line1}}</p>
+                    <p>{{add.line2}}</p>
+                    <p>{{add.landmark}}</p>
+                    <p>{{add.district}}</p>
+                    <p>{{add.state}}</p>
+                    <p>{{add.pin_code}}</p>
+                </div>
+            </div>
+            <p-button *ngIf="add._id === addressID" (click)="activeIndex=1" class="field" label="Deliver To this Address"></p-button>
         </div>
         <p-button (onClick)="addAddress()" class="field" label="Add Address"></p-button>
     </div>
@@ -73,6 +80,71 @@
         <p-button (onClick)="placeOrder()" class="field" label="Submit"></p-button>
     </div>
     <div class="frame" *ngIf="activeIndex==2">
+        <h3>Shipping Address</h3>
+        <div  *ngFor="let add of address">
+        <div *ngIf="add._id === addressID" class="address-card">
+            <div style="
+        display: flex; flex-direction: row; 
+        justify-content: space-between; align-items: center;">
+            <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+                <iframe style="border-radius: 10px; padding: 10px;" width="50%" frameborder="0" scrolling="no"
+                    marginheight="0" marginwidth="0" [src]="sanitizer.bypassSecurityTrustResourceUrl(mapsurl(add))">
+                </iframe>
+                <p-divider styleClass="hidden md:flex" layout="vertical"></p-divider>
+                <div width="50%">
+                    <p>{{add.line1}}</p>
+                    <p>{{add.line2}}</p>
+                    <p>{{add.landmark}}</p>
+                    <p>{{add.district}}</p>
+                    <p>{{add.state}}</p>
+                    <p>{{add.pin_code}}</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <br>
+        <h3>Products Ordered</h3>
+        <div class="card">
+            <p-table [value]="products">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Unit</th>
+                        <th>Tot</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img 
+                                width="75px"
+                                height="75px"
+                                [src]="'https://thirumathikart.nitt.edu/api/product/images/'+ product.image">
+                                <br>
+                                <div>{{product.name}}</div>
+                            </div>
+                        </td>
+                        <td>{{product.quantity}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.quantity * product.price}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="tot">
+                       {{getTotal()}}
+                    </div>
+                </ng-template>
+            </p-table>
+            <br>
+            <h3>Payment Mode</h3>
+            <div class="payment-card">
+                <i class="pi pi-money-bill" style="font-size: 2rem; color: green; padding-left: 1rem;"></i>
+                Cash On Delivery
+            </div>
+        </div>
+        
         <p-button (onClick)="backHome()" class="field" label="Back Home"></p-button>
     </div>
 </div>

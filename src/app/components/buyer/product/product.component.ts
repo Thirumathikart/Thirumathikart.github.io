@@ -45,6 +45,12 @@ export class ProductComponent implements OnInit  {
         );
     }
 
+    onSearch() {
+        setTimeout(() => { 
+             this.search();
+        }, 1000);
+    }
+    
     goBack(): void {
         this.location.back();
       }

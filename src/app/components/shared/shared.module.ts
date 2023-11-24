@@ -9,13 +9,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProfileComponent } from './profile/profile.component';
 import { DividerModule } from 'primeng/divider';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { SupportComponent } from './support/support.component';
 
 @NgModule({
   declarations: [
     AuthComponent,
     NotFoundComponent,
     ProfileComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    SupportComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
   ],
   exports: [
     ProfileComponent,
+    SupportComponent
   ],
 })
 

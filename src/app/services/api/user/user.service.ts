@@ -30,6 +30,15 @@ import { httpResponse } from '../../../models/http';
             headers: this.headers
         });
     }
+
+
+    getUserByID(id:string) : Observable<any> {
+        return this.httpClient.post<httpResponse>(this.base+"/user",{
+            ids: [id]
+        },{
+            headers: this.headers
+        });
+    }
   
     updateUser(key:string, val:string) : Observable<any> {
         return this.httpClient.patch<httpResponse>(this.base+"/user",{

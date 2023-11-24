@@ -14,8 +14,7 @@ export class RoleGuard {
     if (!this.auth.isAuthenticated()) {
         this.router.navigate(['auth']);
         return false;
-    }
-    else if (!this.auth.isAuthorized(role)) {
+    } else if (!this.auth.isAuthorized(role)) {
         this.router.navigate(['unauthorized']);
         return false;
     }

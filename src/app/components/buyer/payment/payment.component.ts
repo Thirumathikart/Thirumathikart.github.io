@@ -3,6 +3,7 @@ import {  Router } from '@angular/router';
 import { OrderService } from 'src/app/services/api/order/order.service';
 import { StateService } from 'src/app/services/state/state.service';
 import { UserService } from 'src/app/services/api/user/user.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-payment',
@@ -34,6 +35,7 @@ export class PaymentComponent implements OnInit {
     }
 
     constructor(
+        public sanitizer: DomSanitizer,
         private userService: UserService,
         private orderService: OrderService,
         private stateService: StateService,
@@ -98,5 +100,9 @@ export class PaymentComponent implements OnInit {
                 }
             }
         );
+    }
+
+    mapsurl(add:any){
+        return `https://www.google.com/maps?q=${add.latitude},${add.longitude}&z=14&output=embed`
     }
 }

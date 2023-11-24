@@ -32,8 +32,14 @@
                       </span>
 
                       <span *ngIf="key=='Packed'" class="arrow">
-                        <button  (click)="updateStatus('Shipped',order._id)" type="button" pButton
-                        style="background: transparent; color: black; border-color: black;"  icon="pi pi-qrcode"></button>   
+                        <a *ngIf="key!='Done'" [href]="' https://wa.me/91'+order.carrier.contact_number">
+                            <button type="button" pButton icon="pi pi-whatsapp"
+                                style="background: transparent; color:rgb(43, 169, 43); border-color: rgb(43, 169, 43); "></button>
+                        </a>
+                        <a *ngIf="key!='Done'" [href]="'telto:+91'+order.carrier.contact_number">
+                            <button type="button" pButton icon="pi pi-phone"
+                                style="background: transparent; color:cornflowerblue; border-color: cornflowerblue; margin-right: 0.5rem;"></button>
+                        </a>
                       </span>
 
                     </div>

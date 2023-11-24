@@ -5,7 +5,7 @@
         </p-button>
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
-            <input placeholder="Search" type="text" pInputText [(ngModel)]="query" />
+            <input (keyup)="onSearch()" placeholder="Search" type="text" pInputText [(ngModel)]="query" />
         </span>
     </div>
     <div *ngFor="let product of products" class="card">

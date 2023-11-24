@@ -32,18 +32,22 @@ export class ProductsComponent implements OnInit {
                 next: (response: any) => {
                     console.log(response);
                     this.products = response.products;
-                },
-                error: error => {
+                }, error: error => {
                     console.log(error.message);
                 }
             }
         );
     }
 
+    onSearch() {
+        setTimeout(() => { 
+             this.search();
+        }, 1000);
+    }
+
     goBack(): void {
         this.location.back();
     }
-
 
     goToDetails(id: string): void {
         this.router.navigate(['inventory'], { queryParams: { id: id } });

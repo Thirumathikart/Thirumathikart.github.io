@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/services/api/product/product.service';
 import { FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { StateService } from 'src/app/services/state/state.service';
+import { UserService } from 'src/app/services/api/user/user.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,6 +15,7 @@ export class ProductDetailsComponent implements OnInit {
 
     id! : string;
     product! : any;
+    seller!: any;
     count: number = 1;
     cartGroup!: FormGroup;
 
@@ -21,6 +23,7 @@ export class ProductDetailsComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
+        private userService: UserService,
         private stateService : StateService,
         private route: ActivatedRoute,
         private router: Router,
@@ -32,7 +35,6 @@ export class ProductDetailsComponent implements OnInit {
       this.route.queryParams.subscribe((params) => {
             this.id = params['id'];
             this.get();
-            console.log(this.id);
      });
     }
 
@@ -56,8 +58,21 @@ export class ProductDetailsComponent implements OnInit {
         this.productService.getProductByID(this.id).subscribe(
             {
                next : (response:any) => { 
-                    console.log('resp:'+response);
                     this.product = response.product;
+                    this.getSeller(this.product.seller_id);
+                },
+                error: error => {
+                  console.log(error.message);
+              }
+            }
+        );
+    }
+
+    getSeller(seller_id:string) {
+        this.userService.getUserByID(seller_id).subscribe(
+            {
+               next : (response:any) => { 
+                    this.seller = response[0];
                 },
                 error: error => {
                   console.log(error.message);

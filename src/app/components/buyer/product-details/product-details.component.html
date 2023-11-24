@@ -36,6 +36,30 @@
                     {{product.description}}
                 </p>
             </p-tabPanel>
+            <p-tabPanel header="Seller">
+                <div style="display: flex;">
+                    <div style="flex: 3;">
+                        {{seller.address[0].line1}},
+                        {{seller.address[0].line2}},
+                        {{seller.address[0].landmark}}
+                        <p>{{seller.address[0].district}}</p>
+                        <p>{{seller.address[0].state}}</p>
+                        <p>{{seller.address[0].pin_code}}</p>
+                    </div>
+                    <div  style=" display: flex;  gap: 0.5rem; flex: 1;">
+                        <a [href]="'telto:+91'+seller.contact_number">
+                            <button type="button" pButton icon="pi pi-phone"
+                                style="background: transparent; color:cornflowerblue; border-color: cornflowerblue; margin-right: 0.5rem;"></button>
+                        </a>
+                        <a [href]="'https://wa.me/91'+seller.contact_number">
+                            <button type="button" pButton icon="pi pi-whatsapp"
+                                style="background: transparent; color:rgb(43, 169, 43); border-color: rgb(43, 169, 43); "></button>
+                        </a>
+                    </div>
+
+                </div>
+      
+            </p-tabPanel>
         </p-tabView>
         <div class="cart">
             <p-button (click)="goToPayment()" label="Buy Now" iconPos="right">
